@@ -66,9 +66,26 @@
     }
 
     function updateData() {
+      UTdata.fetch()
+      .then(function(uTdata){
+        var value=parseInt($("#updata").val());
+        uTdata.set(key,value);
+        return uTdata.update();
+      })
+      .then(function(results){
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html("updata success");
+      })
+      .catch(function(error){
+        $("#display").removeClass();
+        $("#display").addClass("bg-warning");
+        $("#display").html("updata fail:"+JSON.stringify(error))
+      })
     }
 
     function countData() {
+      
     }
 
     function sortData() {
